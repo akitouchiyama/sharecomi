@@ -11,6 +11,8 @@
 |
 */
 
+Route::get('/manga', 'MangaController@index');
+
 Route::get('/', function () {
     return view('welcome');
 });
