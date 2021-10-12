@@ -12,4 +12,5 @@
 */
 
 Route::get('/', 'ComicController@index');
+Route::get('/comics/{comic}', 'ComicController@show');
 

@@ -11,4 +11,9 @@ class ComicController extends Controller
     {
         return view('comics/index')->with(['comics' => $comic->getPaginateByLimit()]);
     }
+
+    public function show(Comic $comic)
+    {
+        return view('comics/show')->with(['comic' => $comic]);
+    }
 }
