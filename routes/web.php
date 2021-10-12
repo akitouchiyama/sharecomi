@@ -11,5 +11,5 @@
 |
 */
 
-Route::get('/comics', 'ComicController@index');
+Route::get('/', 'ComicController@index');
 
