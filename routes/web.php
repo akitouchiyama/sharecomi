@@ -11,8 +11,5 @@
 |
 */
 
-Route::get('/manga', 'MangaController@index');
+Route::get('/comics', 'ComicController@index');
 
-Route::get('/', function () {
-    return view('welcome');
-});
