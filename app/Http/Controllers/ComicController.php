@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Comic;
-use Illuminate\Http\Request;
+use App\Http\Requests\ComicRequest;
 
 class ComicController extends Controller
 {
@@ -15,5 +15,17 @@ class ComicController extends Controller
     public function show(Comic $comic)
     {
         return view('comics/show')->with(['comic' => $comic]);
+    }
+
+    public function create()
+    {
+        return view('comics/create');
+    }
+
+    public function store(Comic $comic, ComicRequest $request)
+    {
+        $input = $request['comic'];
+        $comic->fill($input)->save();
+        return redirect('/comics/' . $comic->id);
     }
 }

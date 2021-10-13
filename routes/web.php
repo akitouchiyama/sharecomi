@@ -12,5 +12,7 @@
 */
 
 Route::get('/', 'ComicController@index');
+Route::get('/comics/create', 'ComicController@create');
 Route::get('/comics/{comic}', 'ComicController@show');
 
+Route::post('/comics', 'ComicController@store');
