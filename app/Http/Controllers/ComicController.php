@@ -40,4 +40,10 @@ class ComicController extends Controller
         $comic->fill($input)->save();
         return redirect('/comics/' . $comic->id);
     }
+
+    public function destroy(Comic $comic)
+    {
+        $comic->delete();
+        return redirect('/');
+    }
 }
