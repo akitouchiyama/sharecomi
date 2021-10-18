@@ -20,3 +20,4 @@ Route::get('/comics/{comic}', 'ComicController@show');
 Route::post('/comics', 'ComicController@store');
 
 Route::get('/', 'ReviewController@index');
+Route::get('/reviews/{review}', 'ReviewController@show');
