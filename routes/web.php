@@ -11,10 +11,12 @@
 |
 */
 
-Route::get('/', 'ComicController@index');
+Route::get('/comics', 'ComicController@index');
 Route::get('/comics/create', 'ComicController@create');
 Route::get('/comics/{comic}/edit', 'ComicController@edit');
 Route::put('/comics/{comic}', 'ComicController@update');
 Route::delete('/comics/{comic}', 'ComicController@destroy');
 Route::get('/comics/{comic}', 'ComicController@show');
 Route::post('/comics', 'ComicController@store');
+
+Route::get('/', 'ReviewController@index');

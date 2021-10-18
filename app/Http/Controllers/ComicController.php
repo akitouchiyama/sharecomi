@@ -9,17 +9,17 @@ class ComicController extends Controller
 {
     public function index(Comic $comic)
     {
-        return view('comics/index')->with(['comics' => $comic->getPaginateByLimit()]);
+        return view('comics.index')->with(['comics' => $comic->getPaginateByLimit()]);
     }
 
     public function show(Comic $comic)
     {
-        return view('comics/show')->with(['comic' => $comic]);
+        return view('comics.show')->with(['comic' => $comic]);
     }
 
     public function create()
     {
-        return view('comics/create');
+        return view('comics.create');
     }
 
     public function store(Comic $comic, ComicRequest $request)
@@ -31,7 +31,7 @@ class ComicController extends Controller
 
     public function edit(Comic $comic)
     {
-        return view('/comics/edit')->with(['comic' => $comic]);
+        return view('comics.edit')->with(['comic' => $comic]);
     }
 
     public function update(Comic $comic, ComicRequest $request)
