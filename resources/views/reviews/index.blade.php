@@ -18,8 +18,9 @@
                         <small>{{ $review->comic->introduction }}</small><br>
                     </div>
                     <a href='/reviews/{{ $review->id }}'><h2 class='title'>{{ $review->title }}</h2></a>
+                    <p class='review'>5段階評価 : {{ $review->review }}</p>
                     <p class='body'>{{ $review->body }}</p>
-                    <p class='updated_at'>{{ $review->updated_at }}</p>
+                    <small>{{ $review->updated_at }}</small>
                     <hr>
                 </div>
             @endforeach

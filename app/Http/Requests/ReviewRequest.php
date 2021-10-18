@@ -1,0 +1,25 @@
+<?php
+
+namespace App\Http\Requests;
+
+use Illuminate\Foundation\Http\FormRequest;
+
+class ReviewRequest extends FormRequest
+{
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array
+     */
+    public function rules()
+    {
+
+        return [
+            'review.title' => 'required|string|max:100',
+            'review.body' => 'required|string|max:4000',
+            'review.review' => 'required|integer|between:0,5',
+            'review.user_id' => 'required',
+            'review.comic_id' => 'required',
+        ];
+    }
+}

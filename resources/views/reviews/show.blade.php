@@ -22,9 +22,10 @@
                 <small>{{ $review->comic->introduction }}</small><br>
             </div>
             <h4>{{ $review->title }}</h4>
+            <p>5段階評価 : {{ $review->review }}</p>
             <p>{{ $review->body }}</p>
             <p>user_id : {{ $review->user_id }}</p>
-            <p>{{ $review->updated_at }}</p>
+            <small>{{ $review->updated_at }}</small>
         </div>
         <div class="footer">
             [<a href="/">back</a>]
