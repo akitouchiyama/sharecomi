@@ -8,6 +8,7 @@
     </head>
     <body>
         <h1>タイムライン</h1>
+        <span>[<a href='/comics'>マンガ一覧へ</a>]</span>
         <p class='create'>[<a href='/reviews/create'>create</a>]</p>
         <div class='reviews'>
             @foreach ($reviews as $review)

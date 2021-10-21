@@ -24,7 +24,7 @@
             <p>{{ $comic->updated_at }}</p>
         </div>
         <div class="footer">
-            [<a href="/">back</a>]
+            [<a href="/comics">back</a>]
         </div>
         <script>
         function deleteComic(e) {

@@ -40,7 +40,7 @@
                 </div>
             </form>
             <div class="footer">
-                [<a href="/">back</a>]
+                [<a href="/comics">back</a>]
             </div>
     </body>
 </html>
