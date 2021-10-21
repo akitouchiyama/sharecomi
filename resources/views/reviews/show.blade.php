@@ -13,7 +13,7 @@
             {{ csrf_field() }}
             {{ method_field('delete') }}
             <input type="submit" style="display:none">
-            <p class='delete'>[<span onclick="return deleteComic(this);">delete</span>]</p>
+            <p class='delete'>[<span onclick="return deleteReview(this);">delete</span>]</p>
         </form>
         <div class="content">
             <div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333;">
@@ -31,7 +31,7 @@
             [<a href="/">back</a>]
         </div>
         <script>
-        function deleteComic(e) {
+        function deleteReview(e) {
             'use strict';
             if(confirm('削除すると復元できません。\n本当に削除しますか?')) {
                 document.getElementById('form_delete').submit();

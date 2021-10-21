@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Review extends Model
 {
@@ -10,6 +11,8 @@ class Review extends Model
     {
         return $this->belongsTo('App\Comic');
     }
+    
+    use softDeletes;
 
     protected $fillable = [
         'title',
