@@ -26,3 +26,5 @@ Route::put('/reviews/{review}', 'ReviewController@update');
 Route::delete('/reviews/{review}', 'ReviewController@destroy');
 Route::get('/reviews/{review}', 'ReviewController@show');
 Route::post('/reviews', 'ReviewController@store');
+
+Route::get('/genres', 'GenreController@index');

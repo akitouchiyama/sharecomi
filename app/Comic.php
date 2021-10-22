@@ -7,9 +7,15 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Comic extends Model
 {
+    // reviewsに対するリレーション
     public function reviews()
     {
         return $this->hasMany('App\Review');
+    }
+    
+    //genresに対するリレーション
+    public function genres()  {
+        return $this->belongsToMany('App\Genre');
     }
 
     use softDeletes;
