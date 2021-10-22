@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Comic;
 use App\Review;
 use App\Http\Requests\ReviewRequest;
 
@@ -17,9 +18,9 @@ class ReviewController extends Controller
         return view('reviews.show')->with(['review' => $review]);
     }
 
-    public function create()
+    public function create(Comic $comic)
     {
-        return view('reviews.create');
+        return view('reviews.create')->with(['comic' => $comic]);
     }
     
     public function store(Review $review, ReviewRequest $request)

@@ -23,8 +23,11 @@
             <p>user_id : {{ $comic->user_id }}</p>
             <p>{{ $comic->updated_at }}</p>
         </div>
+        <div class="button">
+            <button onclick="location.href='/reviews/create/{{ $comic->id }}'">レビュー投稿</button>
+        </div><br>
         <div class="footer">
-            [<a href="/comics">back</a>]
+            [<a href="/comics">マンガ一覧に戻る</a>]
         </div>
         <script>
         function deleteComic(e) {

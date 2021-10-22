@@ -9,7 +9,9 @@
     <body>
         <h1>マンガ一覧</h1>
         <span>[<a href="/">タイムラインへ</a>]</span>
-        <p class='create'>[<a href='/comics/create'>create</a>]</p>
+        <div class="button">
+            <button onclick="location.href='/comics/create'">マンガ投稿</button>
+        </div>
         <div class='comics'>
             @foreach ($comics as $comic)
                 <div class='comic'>

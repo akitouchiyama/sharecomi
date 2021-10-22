@@ -8,6 +8,11 @@
     </head>
     <body>
         <h1>レビュー編集</h1>
+        <div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333;">
+            <h3>{{ $review->comic->title }}</h3>
+            <p>{{ $review->comic->author }}</p>
+            <p>{{ $review->comic->introduction }}</p>
+        </div>
             <form action="/reviews/{{ $review->id }}" method="POST">
                 {{ csrf_field() }}
                 @method('PUT')
@@ -31,7 +36,7 @@
                     <input type="number" name="review[user_id]" placeholder="ユーザーid" value="{{ old('review.user_id') ? : $review->user_id  }}"/>
                     <p class="user_id__error" style="color:red">{{ $errors->first('review.user_id') }}</p>
                 </div>
-                <div class="comic_id">
+                <div class="comic_id" style="display:none">
                     <p>マンガid(仮)</p>
                     <input type="number" name="review[comic_id]" placeholder="マンガid" value="{{ old('review.comic_id') ? : $review->comic_id  }}"/>
                     <p class="comic_id__error" style="color:red">{{ $errors->first('review.comic_id') }}</p>

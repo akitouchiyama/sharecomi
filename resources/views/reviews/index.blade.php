@@ -8,13 +8,12 @@
     </head>
     <body>
         <h1>タイムライン</h1>
-        <span>[<a href='/comics'>マンガ一覧へ</a>]</span>
-        <p class='create'>[<a href='/reviews/create'>create</a>]</p>
+        <span>[<a href='/comics'>マンガ一覧へ</a>]</span><br>
         <div class='reviews'>
             @foreach ($reviews as $review)
                 <div class='review'>
                     <div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333;">
-                        <h4>{{ $review->comic->title }}</h4>
+                        <a href="/comics/{{ $review->comic->id }}"><h4>{{ $review->comic->title }}</h4></a>
                         <small>{{ $review->comic->author }}</small><br>
                         <small>{{ $review->comic->introduction }}</small><br>
                     </div>
