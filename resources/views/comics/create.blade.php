@@ -20,6 +20,19 @@
                     <input type="text" name="comic[author]" placeholder="作者" value="{{ old('comic.author') }}"/>
                     <p class="author__error" style="color:red">{{ $errors->first('comic.author') }}</p>
                 </div>
+                <div class="genres">
+                    <h2>ジャンル</h2>
+                    @foreach($genres as $genre)
+
+                        <label>
+                            {{-- valueを'$genreのid'に、nameを'配列名[]'に --}}
+                            <input type="checkbox" value="{{ $genre->id }}" name="genres_array[]">
+                                {{$genre->genre_name}}
+                            </input>
+                        </label>
+
+                    @endforeach
+                </div>
                 <div class="introduction">
                     <h2>あらすじ</h2>
                     <textarea name="comic[introduction]" placeholder="あらすじ">{{ old('comic.introduction') }}</textarea>

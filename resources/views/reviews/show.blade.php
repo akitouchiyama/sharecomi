@@ -19,6 +19,13 @@
             <div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333;">
                 <h4>{{ $review->comic->title }}</h4>
                 <small>{{ $review->comic->author }}</small><br>
+                <small>
+                    @foreach($review->comic->genres as $genre)
+                        <div>
+                            <button class='genre'>{{ $genre->genre_name }}</button>
+                        </div>
+                    @endforeach
+                </small>
                 <small>{{ $review->comic->introduction }}</small><br>
             </div>
             <h4>{{ $review->title }}</h4>

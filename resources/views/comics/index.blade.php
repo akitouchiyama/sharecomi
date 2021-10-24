@@ -17,6 +17,13 @@
                 <div class='comic'>
                     <a href='/comics/{{ $comic->id }}'><h2 class='title'>{{ $comic->title }}</h2></a>
                     <p class='author'>{{ $comic->author }}</p>
+                    <p class='genres'>
+                        @foreach($comic->genres as $genre)
+                            <div>
+                                <button class='genre' style='display:inline-block;'>{{ $genre->genre_name }}</button>
+                            </div>
+                        @endforeach
+                    </p>
                     <p class='introduction'>{{ $comic->introduction }}</p>
                     <p class='comment'>{{ $comic->comment }}</p>
                 </div>
