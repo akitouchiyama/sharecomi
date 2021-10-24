@@ -11,6 +11,11 @@ class Genre extends Model
         return $this->belongsToMany('App\Comic');
     }
     
+    protected $fillable = [
+        'genre_name',
+        'user_id',
+    ];
+
     public function getPaginateByLimit(int $limit_count = 10)
     {
         // updated_atで降順に並べたあと、limitで件数制限をかける

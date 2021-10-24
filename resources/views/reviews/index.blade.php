@@ -23,7 +23,7 @@
                     </p><br>
                     <small>あらすじ:</small><br>
                     <small>{{ $review->comic->introduction }}</small><br>
-                </div><br>
+                </div>
                 <div class='review'>
                     <a href='/reviews/{{ $review->id }}'><h2 class='title'>{{ $review->title }}</h2></a>
                     <p class='review'>5段階評価 : {{ $review->review }}</p>

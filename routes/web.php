@@ -28,4 +28,6 @@ Route::get('/reviews/{review}', 'ReviewController@show');
 Route::post('/reviews', 'ReviewController@store');
 
 Route::get('/genres', 'GenreController@index');
+Route::get('/genres/create', 'GenreController@create');
 Route::get('/genres/{genre}', 'GenreController@show');
+Route::post('/genres', 'GenreController@store');
