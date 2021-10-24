@@ -11,4 +11,9 @@ class GenreController extends Controller
     {
         return view('genres.index')->with(['genres' => $genre->getPaginateByLimit()]);
     }
+    
+    public function show(Genre $genre)
+    {
+        return view('genres.show')->with(['genre' => $genre]);
+    }
 }
