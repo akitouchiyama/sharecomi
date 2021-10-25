@@ -34,3 +34,5 @@ Route::put('/genres/{genre}', 'GenreController@update');
 Route::delete('/genres/{genre}', 'GenreController@destroy');
 Route::get('/genres/{genre}', 'GenreController@show');
 Route::post('/genres', 'GenreController@store');
+
+Route::get('/tags', 'TagController@index');

@@ -18,6 +18,12 @@ class Comic extends Model
         return $this->belongsToMany('App\Genre');
     }
 
+    // tagsに対するリレーション
+    public function tags() {
+        // comicは複数のtagsを持つ
+        return $this->belongsToMany('App\Tag');
+    }
+
     use softDeletes;
 
     protected $fillable = [
