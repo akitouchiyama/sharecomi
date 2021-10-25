@@ -29,4 +29,15 @@ class GenreController extends Controller
         return redirect('/genres/' . $genre->id);
     }
 
+    public function edit(Genre $genre)
+    {
+        return view('genres.edit')->with(['genre' => $genre]);
+    }
+
+    public function update(Genre $genre, GenreRequest $request)
+    {
+        $input = $request['genre'];
+        $genre->fill($input)->save();
+        return redirect('/genres/' . $genre->id);
+    }
 }

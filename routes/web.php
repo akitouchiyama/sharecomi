@@ -29,5 +29,7 @@ Route::post('/reviews', 'ReviewController@store');
 
 Route::get('/genres', 'GenreController@index');
 Route::get('/genres/create', 'GenreController@create');
+Route::get('/genres/{genre}/edit', 'GenreController@edit');
+Route::put('/genres/{genre}', 'GenreController@update');
 Route::get('/genres/{genre}', 'GenreController@show');
 Route::post('/genres', 'GenreController@store');
