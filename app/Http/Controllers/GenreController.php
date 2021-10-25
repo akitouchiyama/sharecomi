@@ -40,4 +40,10 @@ class GenreController extends Controller
         $genre->fill($input)->save();
         return redirect('/genres/' . $genre->id);
     }
+
+    public function destroy(Genre $genre)
+    {
+        $genre->delete();
+        return redirect('/genres');
+    }
 }

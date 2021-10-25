@@ -43,8 +43,14 @@ class ComicController extends Controller
 
     public function update(Comic $comic, ComicRequest $request)
     {
-        $input = $request['comic'];
-        $comic->fill($input)->save();
+        $input_comic = $request['comic'];
+        $input_genres = $request->genres_array;// genres_arrayはcreate.blade.phpのnameで設定した配列名
+
+        // 先にcomicsを保存
+        $comic->fill($input_comic)->save();
+
+        // attachメソッドで中間テーブルに保存
+        $comic->genres()->attach($input_genres);
         return redirect('/comics/' . $comic->id);
     }
 

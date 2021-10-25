@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Genre extends Model
 {
@@ -10,6 +11,8 @@ class Genre extends Model
     public function comics()  {
         return $this->belongsToMany('App\Comic');
     }
+
+    use SoftDeletes;
     
     protected $fillable = [
         'genre_name',
