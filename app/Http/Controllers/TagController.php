@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Tag;
-
-use Illuminate\Http\Request;
+use App\Http\Requests\TagRequest;
 
 class TagController extends Controller
 {
@@ -16,5 +15,17 @@ class TagController extends Controller
     public function show(Tag $tag)
     {
         return view('tags.show')->with(['tag' => $tag]);
+    }
+
+    public function create()
+    {
+        return view('tags.create');
+    }
+
+    public function store(Tag $tag, TagRequest $request)
+    {
+        $input = $request['tag'];
+        $tag->fill($input)->save();
+        return redirect('/tags/' . $tag->id);
     }
 }
