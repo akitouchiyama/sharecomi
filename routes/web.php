@@ -36,3 +36,4 @@ Route::get('/genres/{genre}', 'GenreController@show');
 Route::post('/genres', 'GenreController@store');
 
 Route::get('/tags', 'TagController@index');
+Route::get('/tags/{tag}', 'TagController@show');
