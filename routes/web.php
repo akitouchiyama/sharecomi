@@ -39,5 +39,6 @@ Route::get('/tags', 'TagController@index');
 Route::get('/tags/create', 'TagController@create');
 Route::get('/tags/{tag}/edit', 'TagController@edit');
 Route::put('/tags/{tag}', 'TagController@update');
+Route::delete('/tags/{tag}', 'TagController@destroy');
 Route::get('/tags/{tag}', 'TagController@show');
 Route::post('/tags', 'TagController@store');

@@ -40,4 +40,10 @@ class TagController extends Controller
         $tag->fill($input)->save();
         return redirect('/tags/' . $tag->id);
     }
+
+    public function destroy(Tag $tag)
+    {
+        $tag->delete();
+        return redirect('/tags');
+    }
 }
