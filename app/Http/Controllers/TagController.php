@@ -28,4 +28,16 @@ class TagController extends Controller
         $tag->fill($input)->save();
         return redirect('/tags/' . $tag->id);
     }
+
+    public function edit(Tag $tag)
+    {
+        return view('tags.edit')->with(['tag' => $tag]);
+    }
+
+    public function update(Tag $tag, TagRequest $request)
+    {
+        $input = $request['tag'];
+        $tag->fill($input)->save();
+        return redirect('/tags/' . $tag->id);
+    }
 }
