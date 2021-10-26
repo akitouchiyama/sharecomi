@@ -10,6 +10,6 @@ class TagController extends Controller
 {
     public function index(Tag $tag)
     {
-        return $tag->get();
+        return view('tags.index')->with(['tags' => $tag->getPaginateByLimit()]);
     }
 }
