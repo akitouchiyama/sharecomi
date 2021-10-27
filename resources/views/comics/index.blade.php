@@ -24,6 +24,13 @@
                             </div>
                         @endforeach
                     </p>
+                    <p class='tags'>
+                        @foreach($comic->tags as $tag)
+                            <div>
+                                <span class='tag' style='border: 1px solid;'>{{ $tag->tag_name }}</span>
+                            </div>
+                        @endforeach
+                    </p>
                     <p class='introduction'>{{ $comic->introduction }}</p>
                     <p class='comment'>{{ $comic->comment }}</p>
                 </div>

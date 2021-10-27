@@ -25,6 +25,13 @@
                             <button class='genre'>{{ $genre->genre_name }}</button>
                         </div>
                     @endforeach
+                </small><br>
+                <small>
+                    @foreach($review->comic->tags as $tag)
+                        <div>
+                            <span class='tag' style='border: 1px solid;'>{{ $tag->tag_name }}</span>
+                        </div>
+                    @endforeach
                 </small>
                 <small>{{ $review->comic->introduction }}</small><br>
             </div>

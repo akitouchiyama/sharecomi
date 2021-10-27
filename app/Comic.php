@@ -26,6 +26,15 @@ class Comic extends Model
 
     use softDeletes;
 
+    public static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($comic) {
+            $comic->reviews()->delete();
+        });
+    }
+
     protected $fillable = [
         'title',
         'author',

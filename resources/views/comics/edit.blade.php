@@ -33,7 +33,19 @@
                         </label>
 
                     @endforeach
-                </div>                
+                </div>
+                <h2>タグ</h2>
+                    @foreach($tags as $tag)
+
+                        <label>
+                            {{-- valueを'$tagのid'に、nameを'配列名[]'に --}}
+                            <input type="checkbox" value="{{ old('tags.id') ? : $tag->id }}" name="tags_array[]">
+                                {{$tag->tag_name}}
+                            </input>
+                        </label>
+
+                    @endforeach
+                </div>
                 <div class="introduction">
                     <h2>あらすじ</h2>
                     <textarea name="comic[introduction]" placeholder="あらすじ">{{ old('comic.introduction') ? : $comic->introduction  }}</textarea>

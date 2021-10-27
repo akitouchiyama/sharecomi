@@ -24,7 +24,14 @@
                         <button class='genre' style='display:inline-block;'>{{ $genre->genre_name }}</button>
                     </div>
                 @endforeach
-            </p>            
+            </p>
+            <p class='tags'>
+                @foreach($comic->tags as $tag)
+                    <div>
+                        <span class='tag' style='border: 1px solid;'>{{ $tag->tag_name }}</span>
+                    </div>
+                @endforeach
+            </p>
             <p>{{ $comic->introduction }}</p>
             <p>{{ $comic->comment }}</p>
             <p>user_id : {{ $comic->user_id }}</p>

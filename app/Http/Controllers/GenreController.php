@@ -43,7 +43,11 @@ class GenreController extends Controller
 
     public function destroy(Genre $genre)
     {
+        // 中間テーブルの紐付けを削除
+        $genre->comics()->detach();
+
         $genre->delete();
+
         return redirect('/genres');
     }
 }

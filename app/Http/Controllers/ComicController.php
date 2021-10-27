@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Comic;
 use App\Genre;
+use App\Tag;
 use App\Http\Requests\ComicRequest;
 
 class ComicController extends Controller
@@ -18,45 +19,56 @@ class ComicController extends Controller
         return view('comics.show')->with(['comic' => $comic]);
     }
 
-    public function create(Genre $genre)
+    public function create(Genre $genre, Tag $tag)
     {
-        return view('comics.create')->with(['genres' => $genre->get()]);
+        return view('comics.create')->with(['genres' => $genre->get()])->with(['tags' => $tag->get()]);
     }
 
     public function store(Comic $comic, ComicRequest $request)
     {
         $input_comic = $request['comic'];
         $input_genres = $request->genres_array;// genres_arrayはcreate.blade.phpのnameで設定した配列名
+        $input_tags = $request->tags_array;// tags_arrayはcreate.blade.phpのnameで設定した配列名
 
         // 先にcomicsを保存
         $comic->fill($input_comic)->save();
 
         // attachメソッドを使って中間テーブルに保存
         $comic->genres()->attach($input_genres);
+        $comic->tags()->attach($input_tags);
+
         return redirect('/comics/' . $comic->id);
     }
 
-    public function edit(Comic $comic, Genre $genre)
+    public function edit(Comic $comic, Genre $genre, Tag $tag)
     {
-        return view('comics.edit')->with(['comic' => $comic])->with(['genres' => $genre->get()]);
+        return view('comics.edit')->with(['comic' => $comic])->with(['genres' => $genre->get()])->with(['tags' => $tag->get()]);
     }
 
     public function update(Comic $comic, ComicRequest $request)
     {
         $input_comic = $request['comic'];
         $input_genres = $request->genres_array;// genres_arrayはcreate.blade.phpのnameで設定した配列名
+        $input_tags = $request->tags_array;// tags_arrayはcreate.blade.phpのnameで設定した配列名
 
         // 先にcomicsを保存
         $comic->fill($input_comic)->save();
 
         // attachメソッドで中間テーブルに保存
         $comic->genres()->attach($input_genres);
+        $comic->tags()->attach($input_tags);
+
         return redirect('/comics/' . $comic->id);
     }
 
     public function destroy(Comic $comic)
     {
+        // 中間テーブルの紐付けを削除
+        $comic->genres()->detach();
+        $comic->tags()->detach();
+
         $comic->delete();
+
         return redirect('/comics');
     }
 }

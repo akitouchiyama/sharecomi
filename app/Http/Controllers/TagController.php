@@ -43,6 +43,9 @@ class TagController extends Controller
 
     public function destroy(Tag $tag)
     {
+        // 中間テーブルの紐付けを削除
+        $tag->comics()->detach();
+
         $tag->delete();
         return redirect('/tags');
     }
