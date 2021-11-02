@@ -44,3 +44,5 @@ Route::get('/tags/{tag}', 'TagController@show');
 Route::post('/tags', 'TagController@store');
 
 Route::get('/comments/{comment}', 'CommentController@show');
+Route::get('/comments/create/{review}', 'CommentController@create');
+Route::post('/comments', 'CommentController@store');

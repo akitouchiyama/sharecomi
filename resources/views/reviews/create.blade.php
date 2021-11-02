@@ -7,7 +7,7 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     </head>
     <body>
-        <h1>レビュー</h1>
+        <h1>レビュー作成</h1>
         <div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333;">
             <h3>{{ $comic->title }}</h3>
             <p>{{ $comic->author }}</p>
@@ -39,7 +39,7 @@
                     <p>コミックid(仮)</p>
                     <input type="number" name="review[comic_id]" placeholder="マンガid" value="{{ $comic->id }}"/>
                     <p class="comic_id__error" style="color:red">{{ $errors->first('review.comic_id') }}</p>
-                </div><br>                
+                </div><br>
                 <div class="submit">
                     <input type="submit" value="登録"/>
                 </div>

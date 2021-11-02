@@ -21,7 +21,7 @@
             <p>{{ $comment->updated_at }}</p>
         </div>
         <div class="footer">
-            [<a href="/">ホームに戻る</a>]
+            [<a href="/">タイムラインに戻る</a>]
         </div>
         <script>
         function deleteGenre(e) {

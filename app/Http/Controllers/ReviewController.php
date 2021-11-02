@@ -23,7 +23,7 @@ class ReviewController extends Controller
     {
         return view('reviews.create')->with(['comic' => $comic]);
     }
-    
+
     public function store(Review $review, ReviewRequest $request)
     {
         $input = $request['review'];

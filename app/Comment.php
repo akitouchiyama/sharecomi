@@ -12,4 +12,9 @@ class Comment extends Model
         return $this->belongsTo('App\Review');
     }
 
+    protected $fillable = [
+        'comment',
+        'user_id',
+        'review_id',
+    ];
 }
