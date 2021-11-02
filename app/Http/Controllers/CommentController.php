@@ -7,8 +7,8 @@ use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
-    public function index(Comment $comment)
+    public function show(Comment $comment)
     {
-        return view('comments.index')->with(['comments' => $comment->getPaginateByLimit()]);
+        return view('comments.show')->with(['comment' => $comment]);
     }
 }
