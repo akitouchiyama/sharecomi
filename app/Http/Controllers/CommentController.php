@@ -24,4 +24,16 @@ class CommentController extends Controller
         $comment->fill($input)->save();
         return redirect('/reviews/' . $comment->review_id);
     }
+
+    public function edit(Review $review, Comment $comment)
+    {
+        return view('comments.edit')->with(['comment' => $comment]);
+    }
+
+    public function update(Comment $comment, CommentRequest $request)
+    {
+        $input = $request['comment'];
+        $comment->fill($input)->save();
+        return redirect('/comments/' . $comment->id);
+    }
 }

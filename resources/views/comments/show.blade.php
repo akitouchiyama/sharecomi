@@ -13,7 +13,7 @@
             {{ csrf_field() }}
             {{ method_field('delete') }}
             <input type="submit" style="display:none">
-            <p class='delete'>[<span onclick="return deleteGenre(this);">delete</span>]</p>
+            <p class='delete'>[<span onclick="return deleteComment(this);">delete</span>]</p>
         </form>
         <div class="content">
             <h3>{{ $comment->comment }}</h3>
@@ -21,10 +21,10 @@
             <p>{{ $comment->updated_at }}</p>
         </div>
         <div class="footer">
-            [<a href="/">タイムラインに戻る</a>]
+            [<a href="/reviews/{{ $comment->review_id }}">Back</a>]
         </div>
         <script>
-        function deleteGenre(e) {
+        function deleteComment(e) {
             'use strict';
             if(confirm('削除すると復元できません。\n本当に削除しますか?')) {
                 document.getElementById('form_delete').submit();
