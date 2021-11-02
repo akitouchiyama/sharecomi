@@ -41,6 +41,22 @@
             <p>user_id : {{ $review->user_id }}</p>
             <small>{{ $review->updated_at }}</small>
         </div>
+        <br><hr>
+
+        <h3>コメント</h3>
+        <div class="comments">
+            @foreach($review->comments as $comment)
+                <div class="comment" style='border: 1px solid;border-radius: 5px;'>
+                    <span>{{ $comment->user_id }}</span><br>
+                    <a href="/comments/{{ $comment->id }}"><span>{{ $comment->comment }}</span></a><br>
+                    <small>{{ $comment->updated_at }}</small><br>
+                </div><br>
+            @endforeach
+            <div class="button">
+                <button onclick="location.href='/comments/create/{{ $review->id }}'">コメント投稿</button>
+            </div><br>
+        </div><hr>
+
         <div class="footer">
             [<a href="/">back</a>]
         </div>

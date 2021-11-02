@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Comic;
+use App\Comment;
 use App\Review;
 use App\Http\Requests\ReviewRequest;
 
