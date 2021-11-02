@@ -40,7 +40,7 @@
                 @method('PUT')
                 <div class="comment">
                     <h2>コメント</h2>
-                    <input type="text" name="comment[comment]" placeholder="コメント" value="{{ old('comment.comment') ? : $comment->comment  }}"/>
+                    <textarea name="comment[comment]" placeholder="コメント">{{ old('comment.comment') ? : $comment->comment  }}</textarea>
                     <p class="comment__error" style="color:red">{{ $errors->first('comment.comment') }}</p>
                 </div>
                 <div class="user_id">

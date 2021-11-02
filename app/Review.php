@@ -19,7 +19,17 @@ class Review extends Model
         return $this->hasMany('App\Comment');
     }
 
-    use softDeletes;
+    use SoftDeletes;
+
+    // 削除したら関連するcommentsも削除
+    public static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($review) {
+            $review->comments()->delete();
+        });
+    }
 
     protected $fillable = [
         'title',

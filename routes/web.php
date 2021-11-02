@@ -43,8 +43,9 @@ Route::delete('/tags/{tag}', 'TagController@destroy');
 Route::get('/tags/{tag}', 'TagController@show');
 Route::post('/tags', 'TagController@store');
 
-Route::get('/comments/{comment}', 'CommentController@show');
 Route::get('/comments/create/{review}', 'CommentController@create');
 Route::get('/comments/{comment}/edit', 'CommentController@edit');
 Route::put('/comments/{comment}', 'CommentController@update');
+Route::delete('/comments/{comment}', 'CommentController@destroy');
+Route::get('/comments/{comment}', 'CommentController@show');
 Route::post('/comments', 'CommentController@store');

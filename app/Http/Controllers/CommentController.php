@@ -36,4 +36,10 @@ class CommentController extends Controller
         $comment->fill($input)->save();
         return redirect('/comments/' . $comment->id);
     }
+
+    public function destroy(Comment $comment)
+    {
+        $comment->delete();
+        return redirect('/reviews/' . $comment->review_id);
+    }
 }

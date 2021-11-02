@@ -24,8 +24,9 @@ class Comic extends Model
         return $this->belongsToMany('App\Tag');
     }
 
-    use softDeletes;
+    use SoftDeletes;
 
+    // 削除したら関連するreviewsも削除
     public static function boot()
     {
         parent::boot();

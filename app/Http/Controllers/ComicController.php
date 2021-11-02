@@ -68,7 +68,6 @@ class ComicController extends Controller
         $comic->tags()->detach();
 
         $comic->delete();
-
         return redirect('/comics');
     }
 }
