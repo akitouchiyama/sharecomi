@@ -24,6 +24,11 @@ class Comic extends Model
         return $this->belongsToMany('App\Tag');
     }
 
+    // averagesに対するリレーション
+    public function average() {
+        return $this->hasOne('App\Average');
+    }
+
     use SoftDeletes;
 
     // 削除したら関連するreviewsも削除
@@ -33,6 +38,10 @@ class Comic extends Model
 
         static::deleting(function ($comic) {
             $comic->reviews()->delete();
+            /* 
+            averageを実装したらコメントを外す
+            $comic->average()->delete();
+            */
         });
     }
 

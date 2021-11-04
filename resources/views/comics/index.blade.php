@@ -37,7 +37,7 @@
             @endforeach
         </div>
         <div class='paginate'>
-            {{ $comics->links() }};
+            {{ $comics->links() }}
         </div>
     </body>
 </html>

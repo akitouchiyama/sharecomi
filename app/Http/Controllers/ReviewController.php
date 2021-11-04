@@ -30,19 +30,19 @@ class ReviewController extends Controller
         $review->fill($input)->save();
         return redirect('/reviews/' . $review->id);
     }
-    
+
     public function edit(Review $review)
     {
         return view('reviews.edit')->with(['review' => $review]);
     }
-    
+
     public function update(Review $review, ReviewRequest $request)
     {
         $input = $request['review'];
         $review->fill($input)->save();
         return redirect('/reviews/' . $review->id);
     }
-    
+
     public function destroy(Review $review)
     {
         $review->delete();

@@ -43,7 +43,7 @@
             @endforeach
         </div>
         <div class='paginate'>
-            {{ $reviews->links() }};
+            {{ $reviews->links() }}
         </div>
     </body>
 </html>
