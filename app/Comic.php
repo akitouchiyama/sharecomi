@@ -12,7 +12,7 @@ class Comic extends Model
     {
         return $this->hasMany('App\Review');
     }
-    
+
     //genresに対するリレーション
     public function genres()  {
         return $this->belongsToMany('App\Genre');
@@ -22,6 +22,11 @@ class Comic extends Model
     public function tags() {
         // comicは複数のtagsを持つ
         return $this->belongsToMany('App\Tag');
+    }
+
+    // pucturesに対するリレーション
+    public function pictures()  {
+        return $this->belongsToMany('App\Picture');
     }
 
     // averagesに対するリレーション

@@ -17,6 +17,11 @@
         </form>
         <div class="content">
             <h3>{{ $comic->title }}</h3>
+            <p class='pictures'>
+                @foreach($comic->pictures as $picture)
+                    <img src="{{ $picture->image_path }}" width="70" height="100">
+                @endforeach
+            </p>
             <p>{{ $comic->author }}</p>
             <p class='genres'>
                 @foreach($comic->genres as $genre)

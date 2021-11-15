@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Comic;
 use App\Comment;
 use App\Review;
+use App\Average;
 use App\Http\Requests\ReviewRequest;
 
 class ReviewController extends Controller
@@ -24,11 +25,11 @@ class ReviewController extends Controller
         return view('reviews.create')->with(['comic' => $comic]);
     }
 
-    public function store(Review $review, ReviewRequest $request)
+    public function store(Review $review, Average $average, ReviewRequest $request)
     {
         $input = $request['review'];
         $review->fill($input)->save();
-        return redirect('/reviews/' . $review->id);
+        return redirect('/averages/' . $review->id);
     }
 
     public function edit(Review $review)

@@ -12,4 +12,10 @@ class Average extends Model
         return $this->belongsTo('App\Comic');
     }
 
+    protected $fillable = [
+        'comic_id',
+        'total_review',
+        'total_number',
+    ];
+
 }

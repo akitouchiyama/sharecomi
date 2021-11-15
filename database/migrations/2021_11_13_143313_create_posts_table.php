@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateComicTagTable extends Migration
+class CreatePostsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateComicTagTable extends Migration
      */
     public function up()
     {
-        Schema::create('comic_tag', function (Blueprint $table) {
-            // comic_idとtag_idを外部キーに設定
-            $table->integer('comic_id')->unsigned();
-            $table->integer('tag_id')->unsigned();
-            $table->primary(['comic_id', 'tag_id']);
+        Schema::create('posts', function (Blueprint $table) {
+            $table->increments('id');
+            // 画像のパスを保存するカラムを追加
+            $table->string('image_path')->nullable();
+            $table->timestamps();
         });
     }
 
@@ -28,6 +28,6 @@ class CreateComicTagTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('comic_tag');
+        Schema::dropIfExists('posts');
     }
 }

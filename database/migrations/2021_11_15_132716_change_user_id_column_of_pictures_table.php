@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateComicTagTable extends Migration
+class ChangeUserIdColumnOfPicturesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class CreateComicTagTable extends Migration
      */
     public function up()
     {
-        Schema::create('comic_tag', function (Blueprint $table) {
-            // comic_idとtag_idを外部キーに設定
-            $table->integer('comic_id')->unsigned();
-            $table->integer('tag_id')->unsigned();
-            $table->primary(['comic_id', 'tag_id']);
+        Schema::table('pictures', function (Blueprint $table) {
+            $table->string('user_id')->nullable()->change(); // カラムの型定義変更
         });
     }
 
@@ -28,6 +25,8 @@ class CreateComicTagTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('comic_tag');
+        Schema::table('pictures', function (Blueprint $table) {
+            //
+        });
     }
 }

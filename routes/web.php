@@ -13,11 +13,13 @@
 
 Route::get('/comics', 'ComicController@index');
 Route::get('/comics/create', 'ComicController@create');
+Route::get('/comics/pictures/{comic}', 'ComicController@add_picture');
 Route::get('/comics/{comic}/edit', 'ComicController@edit');
 Route::put('/comics/{comic}', 'ComicController@update');
 Route::delete('/comics/{comic}', 'ComicController@destroy');
 Route::get('/comics/{comic}', 'ComicController@show');
 Route::post('/comics', 'ComicController@store');
+Route::post('/comics/pictures/{comic}', 'ComicController@store_picture');
 
 Route::get('/', 'ReviewController@index');
 Route::get('/reviews/create/{comic}', 'ReviewController@create');
@@ -49,3 +51,7 @@ Route::put('/comments/{comment}', 'CommentController@update');
 Route::delete('/comments/{comment}', 'CommentController@destroy');
 Route::get('/comments/{comment}', 'CommentController@show');
 Route::post('/comments', 'CommentController@store');
+
+Route::get('/posts', 'PostController@index');
+Route::get('/posts/create', 'PostController@add');
+Route::post('/posts', 'PostController@create');

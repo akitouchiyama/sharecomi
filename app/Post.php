@@ -3,20 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Genre extends Model
+class Post extends Model
 {
-    //comicsに対するリレーション
-    public function comics()  {
-        return $this->belongsToMany('App\Comic');
-    }
-
-    use SoftDeletes;
-
     protected $fillable = [
-        'genre_name',
-        'user_id',
+        'image_path',
     ];
 
     public function getPaginateByLimit(int $limit_count = 10)

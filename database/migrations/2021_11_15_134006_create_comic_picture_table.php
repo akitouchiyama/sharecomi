@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateComicTagTable extends Migration
+class CreateComicPictureTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateComicTagTable extends Migration
      */
     public function up()
     {
-        Schema::create('comic_tag', function (Blueprint $table) {
-            // comic_idとtag_idを外部キーに設定
+        Schema::create('comic_picture', function (Blueprint $table) {
+            // comic_idとpicture_idを外部キーに設定
             $table->integer('comic_id')->unsigned();
-            $table->integer('tag_id')->unsigned();
-            $table->primary(['comic_id', 'tag_id']);
+            $table->integer('picture_id')->unsigned();
+            $table->primary(['comic_id', 'picture_id']);
         });
     }
 
@@ -28,6 +28,6 @@ class CreateComicTagTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('comic_tag');
+        Schema::dropIfExists('comic_picture');
     }
 }

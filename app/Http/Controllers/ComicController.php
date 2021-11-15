@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Comic;
 use App\Genre;
 use App\Tag;
+use App\Picture;
+use Storage;
 use App\Http\Requests\ComicRequest;
+use Illuminate\Http\Request;
 
 class ComicController extends Controller
 {
@@ -36,6 +39,31 @@ class ComicController extends Controller
         // attachメソッドを使って中間テーブルに保存
         $comic->genres()->attach($input_genres);
         $comic->tags()->attach($input_tags);
+
+        return redirect('/comics/pictures/' . $comic->id);
+    }
+
+    public function add_picture(Comic $comic)
+    {
+        return view('comics.add_picture')->with(['comic' => $comic]);
+    }
+
+    public function store_picture(Picture $picture,Comic $comic, Request $request)
+    {
+        $form = $request->all();
+        $comicId = $comic->id;
+
+        //s3アップロード開始
+        $image = $request->file('image');
+        // バケットの`comics`フォルダへアップロード
+        $path = Storage::disk('s3')->putFile('comics', $image, 'public');
+        // アップロードした画像のフルパスを取得
+        $picture->image_path = Storage::disk('s3')->url($path);
+
+        $picture->save();
+
+        // attachを使って中間テーブルに保存
+        $picture->comics()->attach($comicId);
 
         return redirect('/comics/' . $comic->id);
     }
