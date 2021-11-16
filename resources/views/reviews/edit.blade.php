@@ -40,6 +40,10 @@
                     <p>マンガid(仮)</p>
                     <input type="number" name="review[comic_id]" placeholder="マンガid" value="{{ old('review.comic_id') ? : $review->comic_id  }}"/>
                     <p class="comic_id__error" style="color:red">{{ $errors->first('review.comic_id') }}</p>
+                </div>
+                <div class="id" style="display:none">
+                    <p>id</p>
+                    <input type="number" name="review[id]" placeholder="id" value="{{ old('review.id') ? : $review->id  }}"/>
                 </div><br>
                 <div class="submit">
                     <input type="submit" value="更新"/>

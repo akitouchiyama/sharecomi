@@ -32,6 +32,7 @@ class Review extends Model
     }
 
     protected $fillable = [
+        'id',
         'title',
         'body',
         'review',

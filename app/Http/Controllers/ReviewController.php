@@ -25,11 +25,21 @@ class ReviewController extends Controller
         return view('reviews.create')->with(['comic' => $comic]);
     }
 
-    public function store(Review $review, Average $average, ReviewRequest $request)
+    public function store(Review $review, Comic $comic, ReviewRequest $request)
     {
         $input = $request['review'];
         $review->fill($input)->save();
-        return redirect('/averages/' . $review->id);
+
+        // findメソッドでcomicインスタンスを取得
+        $comic = comic::find($review->comic_id);
+        // 評価をcomicのtotal_reviewに加算する
+        $comic->total_review += $review->review;
+        // comicのtotal_numberに1加算する
+        $comic->total_number += 1;
+        // comicを保存
+        $comic->save();
+
+        return redirect('/reviews/' . $review->id);
     }
 
     public function edit(Review $review)
@@ -37,16 +47,40 @@ class ReviewController extends Controller
         return view('reviews.edit')->with(['review' => $review]);
     }
 
-    public function update(Review $review, ReviewRequest $request)
+    public function update(Review $review, ReviewRequest $request, Comic $comic)
     {
         $input = $request['review'];
+
+        // findメソッドで編集前のreviewインスタンス(post_review)を取得
+        $post_review = review::find($input['id']);
+        // そのpost_reviewから、findメソッドでcomicインスタンスを取得
+        $comic = comic::find($post_review->comic_id);
+        // comicのtotal_reviewから編集前のreviewを減算する
+        $comic->total_review -= $post_review->review;
+
+        // reviewを保存
         $review->fill($input)->save();
+
+        // 評価をcomicのtotal_reviewに加算する
+        $comic->total_review += $review->review;
+        // comicを保存
+        $comic->save();
+
         return redirect('/reviews/' . $review->id);
     }
 
-    public function destroy(Review $review)
+    public function destroy(Review $review, Comic $comic)
     {
         $review->delete();
+        // reviewのcomic_idからfindメソッドでcomicを取得
+        $comic = comic::find($review->comic_id);
+        // total_reviewからreviewをマイナスする
+        $comic->total_review -= $review->review;
+        // total_numberから1マイナスする
+        $comic->total_number -= 1;
+        // comicを保存
+        $comic->save();
+
         return redirect('/');
     }
 }

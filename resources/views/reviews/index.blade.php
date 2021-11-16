@@ -16,17 +16,28 @@
                 <div class='comic' style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333;">
                     <a href="/comics/{{ $review->comic->id }}"><h4>{{ $review->comic->title }}</h4></a>
                     <p>{{ $review->comic->author }}</p>
+                    <p class='average'>
+                            @if ($review->comic->total_number == 0 && $review->comic->total_review == 0)
+                                @php
+                                    echo '平均評価: ' . 0;
+                                @endphp
+                            @else
+                                @php
+                                    echo '平均評価: ' . round($review->comic->total_review / $review->comic->total_number, 2);
+                                @endphp
+                            @endif
+                    </p>
                     <p>
                         @foreach($review->comic->genres as $genre)
                             <div>
-                                <button class='genre'>{{ $genre->genre_name }}</button>
+                                <span class='genre' style='border: 2px solid;'>{{ $genre->genre_name }}</span>
                             </div>
                         @endforeach
                     </p>
                     <p>
                         @foreach($review->comic->tags as $tag)
                             <div>
-                                <span class='tag' style='border: 1px solid;'>{{ $tag->tag_name }}</span>
+                                <span class='tag' style='border: 1px solid;'>#{{ $tag->tag_name }}</span>
                             </div>
                         @endforeach
                     </p>
