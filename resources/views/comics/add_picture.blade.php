@@ -8,6 +8,15 @@
     </head>
     <body>
         <h1>マンガ画像アップロード</h1><br>
+        @if (count($errors) > 0)
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li style="color:red">{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <form action="/comics/pictures/{{ $comic->id }}" method="post" enctype="multipart/form-data">
             <!-- アップロードフォームの作成 -->
             <input type="file" name="image">

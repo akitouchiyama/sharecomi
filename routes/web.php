@@ -34,11 +34,16 @@ Route::post('/reviews', 'ReviewController@store');
 
 Route::get('/genres', 'GenreController@index');
 Route::get('/genres/create', 'GenreController@create');
+Route::get('/genres/pictures/{genre}', 'GenreController@add_picture');
 Route::get('/genres/{genre}/edit', 'GenreController@edit');
 Route::put('/genres/{genre}', 'GenreController@update');
+Route::get('/genres/pictures/{genre}/edit', 'GenreController@edit_picture');
+Route::put('/genres/pictures/{genre}', 'GenreController@update_picture');
 Route::delete('/genres/{genre}', 'GenreController@destroy');
+Route::delete('/genres/pictures/{picture}', 'GenreController@destroy_picture');
 Route::get('/genres/{genre}', 'GenreController@show');
 Route::post('/genres', 'GenreController@store');
+Route::post('/genres/pictures/{genre}', 'GenreController@store_picture');
 
 Route::get('/tags', 'TagController@index');
 Route::get('/tags/create', 'TagController@create');

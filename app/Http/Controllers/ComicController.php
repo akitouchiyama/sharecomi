@@ -48,8 +48,13 @@ class ComicController extends Controller
         return view('comics.add_picture')->with(['comic' => $comic]);
     }
 
-    public function store_picture(Picture $picture,Comic $comic, Request $request)
+    public function store_picture(Picture $picture, Comic $comic, Request $request)
     {
+        // 画像バリデーション
+        $this->validate($request, [
+             'image' => 'required|image|mimes:jpeg,png,jpg,gif'
+        ]);
+
         $form = $request->all();
         $comicId = $comic->id;
 
@@ -96,6 +101,11 @@ class ComicController extends Controller
 
     public function update_picture(Picture $picture,Comic $comic, Request $request)
     {
+        // 画像バリデーション
+        $this->validate($request, [
+             'image' => 'required|image|mimes:jpeg,png,jpg,gif'
+        ]);
+
         $form = $request->all();
         $comicId = $comic->id;
 
