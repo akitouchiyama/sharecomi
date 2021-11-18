@@ -18,7 +18,7 @@
                     <a href='/comics/{{ $comic->id }}'><h2 class='title'>{{ $comic->title }}</h2></a>
                     <p class='pictures'>
                         @foreach($comic->pictures as $picture)
-                            <img src="{{ $picture->image_path }}" width="70" height="100">
+                            <a href="/comics/pictures/{{ $comic->id }}/edit"><img src="https://sharecomi.s3-ap-northeast-1.amazonaws.com/{{ $picture->image_path }}" width="70" height="100"></a>
                         @endforeach
                     </p>
                     <p class='average'>

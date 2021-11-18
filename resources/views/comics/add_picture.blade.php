@@ -7,15 +7,16 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     </head>
     <body>
-        <h1>マンガ画像アップロード</h1>
+        <h1>マンガ画像アップロード</h1><br>
         <form action="/comics/pictures/{{ $comic->id }}" method="post" enctype="multipart/form-data">
             <!-- アップロードフォームの作成 -->
             <input type="file" name="image">
             {{ csrf_field() }}
             <input type="submit" value="アップロード">
         </form>
+        <br><hr>
         <div class="footer">
-            [<a href="/comics/{{ $comic->id }}">画像を設定しない</a>]
+            [<a href="/comics/{{ $comic->id }}">マンガ画像を設定しない</a>]
         </div>
     </body>
 </html>

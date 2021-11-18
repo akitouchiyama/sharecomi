@@ -58,7 +58,7 @@ class ComicController extends Controller
         // バケットの`comics`フォルダへアップロード
         $path = Storage::disk('s3')->putFile('comics', $image, 'public');
         // アップロードした画像のフルパスを取得
-        $picture->image_path = Storage::disk('s3')->url($path);
+        $picture->image_path = $path;
 
         $picture->save();
 
@@ -87,6 +87,42 @@ class ComicController extends Controller
         $comic->tags()->attach($input_tags);
 
         return redirect('/comics/' . $comic->id);
+    }
+
+    public function edit_picture(Comic $comic)
+    {
+        return view('comics.edit_picture')->with(['comic' => $comic]);
+    }
+
+    public function update_picture(Picture $picture,Comic $comic, Request $request)
+    {
+        $form = $request->all();
+        $comicId = $comic->id;
+
+        //s3アップロード開始
+        $image = $request->file('image');
+        // バケットの`comics`フォルダへアップロード
+        $path = Storage::disk('s3')->putFile('comics', $image, 'public');
+        // アップロードした画像のフルパスを取得
+        $picture->image_path = $path;
+
+        $picture->save();
+
+        // attachを使って中間テーブルに保存
+        $picture->comics()->attach($comicId);
+
+        return redirect('/comics/' . $comic->id);
+    }
+
+    public function destroy_picture(Picture $picture)
+    {
+        // 中間テーブルの紐付けを削除
+        $picture->comics()->detach();
+
+        $image = $picture->image_path;
+        $s3_delete = Storage::disk('s3')->delete($image);
+        $db_delete = Picture::where('image_path',$image)->delete();
+        return redirect('/comics/');
     }
 
     public function destroy(Comic $comic)

@@ -8,6 +8,9 @@
     </head>
     <body>
         <h1>マンガ編集</h1>
+        <div class="button">
+            <p>[<a href="/comics/pictures/{{ $comic->id }}/edit">マンガ画像編集</a>]</p>
+        </div><br>
             <form action="/comics/{{ $comic->id }}" method="POST">
                 {{ csrf_field() }}
                 @method('PUT')
@@ -65,6 +68,7 @@
                     <input type="submit" value="更新"/>
                 </div>
             </form>
+
             <div class="footer">
                 [<a href="/comics/{{ $comic->id }}">back</a>]
             </div>
