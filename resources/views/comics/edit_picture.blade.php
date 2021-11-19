@@ -34,6 +34,7 @@
             @method('PUT')
             <input type="submit" value="アップロード">
         </form>
+        <p style="color:red">※画像はamazonや楽天のものかフリー素材を使ってください。著作権侵害になる恐れがあります。</p>
         <br>
         [<a href="/comics/{{ $comic->id }}">マンガ詳細に戻る</a>]<hr>
 

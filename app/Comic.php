@@ -56,6 +56,9 @@ class Comic extends Model
         'introduction',
         'comment',
         'user_id',
+        'total_review',
+        'total_number',
+        'comic_link',
     ];
 
     public function getPaginateByLimit(int $limit_count = 5)

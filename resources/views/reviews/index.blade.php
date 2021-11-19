@@ -16,6 +16,9 @@
                 <div class='comic' style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333;">
                     <a href="/comics/{{ $review->comic->id }}"><h4>{{ $review->comic->title }}</h4></a>
                     <p>{{ $review->comic->author }}</p>
+                    @if($review->comic->comic_link)
+                        <a href="{{ $review->comic->comic_link }}">商品リンク</a>
+                    @endif
                     <p class='average'>
                             @if ($review->comic->total_number == 0 && $review->comic->total_review == 0)
                                 @php

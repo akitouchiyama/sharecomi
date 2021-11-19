@@ -23,6 +23,7 @@
             {{ csrf_field() }}
             <input type="submit" value="アップロード">
         </form>
+        <p style="color:red">※画像はamazonや楽天のものを使ってください。著作権侵害になる恐れがあります。</p>
         <br><hr>
         <div class="footer">
             [<a href="/comics/{{ $comic->id }}">マンガ画像を設定しない</a>]

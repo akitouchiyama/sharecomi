@@ -26,6 +26,15 @@
                 </div>
                 <div class="genres">
                     <h2>ジャンル</h2>
+                    <div class="checked_genre" style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333;">
+                        <p>選択中のジャンル</p>
+                        <ul>
+                            @foreach($comic->genres as $genre)
+                                <li>{{ $genre->genre_name }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+
                     @foreach($genres as $genre)
 
                         <label>
@@ -38,6 +47,15 @@
                     @endforeach
                 </div>
                 <h2>タグ</h2>
+                    <div class="checked_tag" style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333;">
+                        <p>選択中のタグ</p>
+                        <ul>
+                            @foreach($comic->tags as $tag)
+                                <li>{{ $tag->tag_name }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+
                     @foreach($tags as $tag)
 
                         <label>
@@ -59,6 +77,11 @@
                     <textarea name="comic[comment]" placeholder="コメント">{{ old('comic.comment') ? : $comic->comment  }}</textarea>
                     <p class="comment__error" style="color:red">{{ $errors->first('comic.comment') }}</p>
                 </div>
+                <div class="link">
+                    <h2>商品リンク</h2>
+                    <p style="color:red">※画像を貼る場合は、Amazonや楽天の商品リンクを貼らないと著作権侵害になる恐れがあります。</p>
+                    <input type="text" name="comic[comic_link]" placeholder="リンク" value="{{ old('comic.link') ? : $comic->link  }}"/>
+                </div>
                 <div class="user_id">
                     <p>ユーザーid(仮)</p>
                     <input type="number" name="comic[user_id]" placeholder="ユーザーid" value="{{ old('comic.user_id') ? : $comic->user_id  }}"/>
@@ -72,5 +95,14 @@
             <div class="footer">
                 [<a href="/comics/{{ $comic->id }}">back</a>]
             </div>
+
+            <script>
+            function deleteGenre(e) {
+                'use strict';
+                if(confirm('本当に削除しますか?')) {
+                    document.getElementById('form_delete_{{ $genre->id }}').submit();
+                }
+            }
+            </script>
     </body>
 </html>

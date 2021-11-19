@@ -23,6 +23,9 @@
                 @endforeach
             </p>
             <p>{{ $comic->author }}</p>
+            @if($comic->comic_link)
+                <a href="{{ $comic->comic_link }}">商品リンク</a>
+            @endif
             <p class='average'>
                     @if ($comic->total_number == 0 && $comic->total_review == 0)
                         @php
@@ -50,6 +53,7 @@
             </p>
             <p>{{ $comic->introduction }}</p>
             <p>{{ $comic->comment }}</p>
+            <p>{{ $comic->comic_link }}</p>
             <p>user_id : {{ $comic->user_id }}</p>
             <p>{{ $comic->updated_at }}</p>
         </div>

@@ -132,7 +132,7 @@ class ComicController extends Controller
         $image = $picture->image_path;
         $s3_delete = Storage::disk('s3')->delete($image);
         $db_delete = Picture::where('image_path',$image)->delete();
-        return redirect('/comics/');
+        return redirect('/comics');
     }
 
     public function destroy(Comic $comic)

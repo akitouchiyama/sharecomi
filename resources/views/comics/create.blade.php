@@ -22,6 +22,7 @@
                 </div>
                 <div class="genres">
                     <h2>ジャンル</h2>
+
                     @foreach($genres as $genre)
 
                         <label>
@@ -55,6 +56,11 @@
                     <h2>コメント</h2>
                     <textarea name="comic[comment]" placeholder="コメント">{{ old('comic.comment') }}</textarea>
                     <p class="comment__error" style="color:red">{{ $errors->first('comic.comment') }}</p>
+                </div>
+                <div class="link">
+                    <h2>商品リンク</h2>
+                    <p style="color:red">※画像を貼る場合は、Amazonや楽天の商品リンクを貼らないと著作権侵害になる恐れがあります。</p>
+                    <input type="text" name="comic[comic_link]" placeholder="リンク" value="{{ old('comic.link') }}"/>
                 </div>
                 <div class="user_id">
                     <p>ユーザーid(仮)</p>

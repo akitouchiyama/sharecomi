@@ -21,6 +21,10 @@
                             <a href="/comics/pictures/{{ $comic->id }}/edit"><img src="https://sharecomi.s3-ap-northeast-1.amazonaws.com/{{ $picture->image_path }}" width="70" height="100"></a>
                         @endforeach
                     </p>
+                    <p class='author'>{{ $comic->author }}</p>
+                    @if($comic->comic_link)
+                        <a href="{{ $comic->comic_link }}">商品リンク</a>
+                    @endif
                     <p class='average'>
                             @if ($comic->total_number == 0 && $comic->total_review == 0)
                                 @php
@@ -32,7 +36,6 @@
                                 @endphp
                             @endif
                     </p>
-                    <p class='author'>{{ $comic->author }}</p>
                     <p class='genres'>
                         @foreach($comic->genres as $genre)
                             <div>
@@ -49,6 +52,7 @@
                     </p>
                     <p class='introduction'>{{ $comic->introduction }}</p>
                     <p class='comment'>{{ $comic->comment }}</p>
+                    <p class='comic_link'>{{ $comic->comic_link }}</p>
                 </div>
             @endforeach
         </div>
