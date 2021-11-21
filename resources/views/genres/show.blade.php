@@ -17,6 +17,9 @@
         </form>
         <div class="content">
             <h3>{{ $genre->genre_name }}</h3>
+            @foreach($genre->pictures as $picture)
+                <a href="{{ $genre->genre_link }}"><img src="https://sharecomi.s3-ap-northeast-1.amazonaws.com/{{ $picture->image_path }}" width="70" height="100"></a>
+            @endforeach
             <p>user_id : {{ $genre->user_id }}</p>
             <p>{{ $genre->updated_at }}</p>
         </div>

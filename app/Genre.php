@@ -12,11 +12,17 @@ class Genre extends Model
         return $this->belongsToMany('App\Comic');
     }
 
+    // pucturesに対するリレーション
+    public function pictures()  {
+        return $this->belongsToMany('App\Picture');
+    }
+
     use SoftDeletes;
 
     protected $fillable = [
         'genre_name',
         'user_id',
+        'genre_link',
     ];
 
     public function getPaginateByLimit(int $limit_count = 10)

@@ -12,6 +12,12 @@ class Picture extends Model
         return $this->belongsToMany('App\Comic');
     }
 
+    // genresとのリレーション
+    public function genres()
+    {
+        return $this->belongsToMany('App\Genre');
+    }
+
     protected $fillable = [
         'image_path',
         'user_id',

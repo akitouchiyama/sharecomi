@@ -8,9 +8,9 @@
     </head>
     <body>
         <h1>タイムライン</h1>
-        <span>[<a href='/comics'>マンガ一覧へ</a>]</span><br>
-        <span>[<a href='/genres'>ジャンル一覧へ</a>]</span>
-        <span>[<a href='/tags'>タグ一覧へ</a>]</span>
+        <span>[<a href='/comics'>マンガ一覧</a>]</span><br>
+        <span>[<a href='/genres'>ジャンル一覧</a>]</span>
+        <span>[<a href='/tags'>タグ一覧</a>]</span>
         <div class='reviews'>
             @foreach ($reviews as $review)
                 <div class='comic' style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333;">

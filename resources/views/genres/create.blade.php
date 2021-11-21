@@ -15,6 +15,11 @@
                     <input type="text" name="genre[genre_name]" placeholder="ジャンル名" value="{{ old('genre.genre_name') }}"/>
                     <p class="genre_name__error" style="color:red">{{ $errors->first('genre.genre_name') }}</p>
                 </div>
+                <div class="link">
+                    <h2>商品リンク</h2>
+                    <p style="color:red">※画像を貼る場合は、Amazonや楽天の商品リンクを貼らないと著作権侵害になる恐れがあります。</p>
+                    <input type="text" name="genre[genre_link]" placeholder="リンク" value="{{ old('genre.link') }}"/>
+                </div>
                 <div class="user_id">
                     <p>ユーザーid(仮)</p>
                     <input type="number" name="genre[user_id]" placeholder="ユーザーid" value="{{ old('genre.user_id') }}"/>

@@ -9,6 +9,8 @@
     <body>
         <h1>マンガ一覧</h1>
         <span>[<a href="/">タイムラインへ</a>]</span>
+        <span>[<a href='/genres'>ジャンルから探す</a>]</span>
+        <span>[<a href='/tags'>タグから探す</a>]</span>
         <div class="button">
             <button onclick="location.href='/comics/create'">マンガ投稿</button>
         </div>
