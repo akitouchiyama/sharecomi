@@ -9,7 +9,7 @@
     <body>
         <h1>ジャンル詳細</h1>
         <p class='edit'>[<a href="/genres/{{ $genre->id }}/edit">edit</a>]</p>
-        <form action="/genres/{{ $genre->id }}" id="form_delete" method="post">
+        <form action="/genres/{{ $genre->id }}/{{ $genre->picture->id }}" id="form_delete" method="post">
             {{ csrf_field() }}
             {{ method_field('delete') }}
             <input type="submit" style="display:none">
@@ -17,9 +17,9 @@
         </form>
         <div class="content">
             <h3>{{ $genre->genre_name }}</h3>
-            @foreach($genre->pictures as $picture)
-                <a href="{{ $genre->genre_link }}"><img src="https://sharecomi.s3-ap-northeast-1.amazonaws.com/{{ $picture->image_path }}" width="70" height="100"></a>
-            @endforeach
+            @if($genre->picture)
+                <a href="{{ $genre->genre_link }}"><img src="https://sharecomi.s3-ap-northeast-1.amazonaws.com/{{ $genre->picture->image_path }}" width="70" height="100"></a>
+            @endif
             <p>user_id : {{ $genre->user_id }}</p>
             <p>{{ $genre->updated_at }}</p>
         </div>

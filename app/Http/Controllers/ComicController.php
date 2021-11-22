@@ -96,7 +96,7 @@ class ComicController extends Controller
 
     public function edit_picture(Comic $comic)
     {
-        return view('comics.edit_picture')->with(['comic' => $comic]);
+        return view('comics.edit_picture', ['picture'=>''])->with(['comic' => $comic]);
     }
 
     public function update_picture(Picture $picture,Comic $comic, Request $request)
@@ -132,16 +132,6 @@ class ComicController extends Controller
         $image = $picture->image_path;
         $s3_delete = Storage::disk('s3')->delete($image);
         $db_delete = Picture::where('image_path',$image)->delete();
-        return redirect('/comics');
-    }
-
-    public function destroy(Comic $comic)
-    {
-        // 中間テーブルの紐付けを削除
-        $comic->genres()->detach();
-        $comic->tags()->detach();
-
-        $comic->delete();
         return redirect('/comics');
     }
 }

@@ -29,7 +29,7 @@ class GenreController extends Controller
     {
         $input = $request['genre'];
         $genre->fill($input)->save();
-        return redirect('/genres/pictures/' . $genre->id);
+        return redirect('/genres/picture/' . $genre->id);
     }
 
     public function add_picture(Genre $genre)
@@ -45,7 +45,6 @@ class GenreController extends Controller
         ]);
 
         $form = $request->all();
-        $genreId = $genre->id;
 
         //s3アップロード開始
         $image = $request->file('image');
@@ -54,10 +53,11 @@ class GenreController extends Controller
         // アップロードした画像のフルパスを取得
         $picture->image_path = $path;
 
-        $picture->save();
+        // genreのidをpictureのgenre_idに代入
+        $picture->genre_id = $genre->id;
 
-        // attachを使って中間テーブルに保存
-        $picture->genres()->attach($genreId);
+        // pictureを保存
+        $picture->save();
 
         return redirect('/genres/' . $genre->id);
     }
@@ -74,10 +74,56 @@ class GenreController extends Controller
         return redirect('/genres/' . $genre->id);
     }
 
-    public function destroy(Genre $genre)
+    public function edit_picture(Genre $genre)
+    {
+        return view('genres.edit_picture')->with(['genre' => $genre]);
+    }
+
+    public function update_picture(Picture $picture,Genre $genre, Request $request)
+    {
+        // 画像バリデーション
+        $this->validate($request, [
+             'image' => 'required|image|mimes:jpeg,png,jpg,gif'
+        ]);
+
+        $form = $request->all();
+
+        //s3アップロード開始
+        $image = $request->file('image');
+        // バケットの`comics`フォルダへアップロード
+        $path = Storage::disk('s3')->putFile('genres', $image, 'public');
+        // アップロードした画像のフルパスを取得
+        $picture->image_path = $path;
+
+        // genreのidをpictureのgenre_idに代入
+        $picture->genre_id = $genre->id;
+
+        // pictureを保存
+        $picture->save();
+
+        return redirect('/genres/' . $genre->id);
+    }
+
+    public function destroy_picture(Genre $genre, Picture $picture)
+    {
+        $image = $picture->image_path;
+        $s3_delete = Storage::disk('s3')->delete($image);
+        $db_delete = Picture::where('image_path',$image)->delete();
+        return redirect('/genres/' . $genre->id);
+    }
+
+    public function destroy(Genre $genre, Picture $picture)
     {
         // 中間テーブルの紐付けを削除
         $genre->comics()->detach();
+
+        // genreの画像をs3から削除
+        $image = $picture->image_path;
+        $s3_delete = Storage::disk('s3')->delete($image);
+        $db_delete = Picture::where('image_path',$image)->delete();
+
+        // 関連するpictureを削除
+        $genre->picture()->delete();
 
         $genre->delete();
 

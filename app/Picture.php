@@ -13,14 +13,15 @@ class Picture extends Model
     }
 
     // genresとのリレーション
-    public function genres()
+    public function genre()
     {
-        return $this->belongsToMany('App\Genre');
+        return $this->hasOne('App\Genre');
     }
 
     protected $fillable = [
         'image_path',
         'user_id',
+        'genre_id',
     ];
 
 }

@@ -71,7 +71,9 @@ class ReviewController extends Controller
 
     public function destroy(Review $review, Comic $comic)
     {
-        $review->delete();
+        // reviewに関連するcommentを削除
+        $review->comments()->delete();
+
         // reviewのcomic_idからfindメソッドでcomicを取得
         $comic = comic::find($review->comic_id);
         // total_reviewからreviewをマイナスする
@@ -80,6 +82,9 @@ class ReviewController extends Controller
         $comic->total_number -= 1;
         // comicを保存
         $comic->save();
+
+        // revieを削除
+        $review->delete();
 
         return redirect('/');
     }

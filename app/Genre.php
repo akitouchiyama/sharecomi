@@ -13,8 +13,8 @@ class Genre extends Model
     }
 
     // pucturesに対するリレーション
-    public function pictures()  {
-        return $this->belongsToMany('App\Picture');
+    public function picture()  {
+        return $this->hasOne('App\Picture');
     }
 
     use SoftDeletes;

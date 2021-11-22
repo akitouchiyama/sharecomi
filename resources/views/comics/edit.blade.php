@@ -80,7 +80,7 @@
                 <div class="link">
                     <h2>商品リンク</h2>
                     <p style="color:red">※画像を貼る場合は、Amazonや楽天の商品リンクを貼らないと著作権侵害になる恐れがあります。</p>
-                    <input type="text" name="comic[comic_link]" placeholder="リンク" value="{{ old('comic.link') ? : $comic->link  }}"/>
+                    <textarea name="comic[comic_link]" placeholder="リンク" style='resize: horizontal;width:500px;height:200px;'>{{ old('comic.comic_link') ? : $comic->comic_link  }}</textarea>
                 </div>
                 <div class="user_id">
                     <p>ユーザーid(仮)</p>

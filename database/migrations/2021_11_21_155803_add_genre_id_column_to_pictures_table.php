@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class ChangeUserIdColumnOfPicturesTable extends Migration
+class AddGenreIdColumnToPicturesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class ChangeUserIdColumnOfPicturesTable extends Migration
     public function up()
     {
         Schema::table('pictures', function (Blueprint $table) {
-            $table->string('user_id')->nullable()->change(); // カラムの型定義変更
+            $table->bigInteger('genre_id')->unsigned()->nullable();
         });
     }
 

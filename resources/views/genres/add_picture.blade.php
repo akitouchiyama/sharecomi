@@ -17,7 +17,7 @@
                 </ul>
             </div>
         @endif
-        <form action="/genres/pictures/{{ $genre->id }}" method="post" enctype="multipart/form-data">
+        <form action="/genres/picture/{{ $genre->id }}" method="post" enctype="multipart/form-data">
             <!-- アップロードフォームの作成 -->
             <input type="file" name="image">
             {{ csrf_field() }}
