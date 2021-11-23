@@ -12,6 +12,12 @@ class Genre extends Model
         return $this->belongsToMany('App\Comic');
     }
 
+    // usersとのリレーション
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
+
     // pucturesに対するリレーション
     public function picture()  {
         return $this->hasOne('App\Picture');

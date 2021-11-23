@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <title>Sarecomi</title>
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-    </head>
-    <body>
+@extends('layouts.app')
+
+@section('content')
         <h1>マンガ登録</h1>
             <form action="/comics" method="POST">
                 {{ csrf_field() }}
@@ -62,9 +56,9 @@
                     <p style="color:red">※画像を貼る場合は、Amazonや楽天の商品リンクを貼らないと著作権侵害になる恐れがあります。</p>
                     <input type="text" name="comic[comic_link]" placeholder="リンク" value="{{ old('comic.link') }}"/>
                 </div>
-                <div class="user_id">
+                <div class="user_id" style="display:none">
                     <p>ユーザーid(仮)</p>
-                    <input type="number" name="comic[user_id]" placeholder="ユーザーid" value="{{ old('comic.user_id') }}"/>
+                    <input type="number" name="comic[user_id]" placeholder="ユーザーid" value="{{ Auth::id() }}"/>
                     <p class="user_id__error" style="color:red">{{ $errors->first('comic.user_id') }}</p>
                 </div><br>
                 <div class="submit">
@@ -74,5 +68,4 @@
             <div class="footer">
                 [<a href="/comics">back</a>]
             </div>
-    </body>
-</html>
+@endsection

@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <title>Sarecomi</title>
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-    </head>
-    <body>
+@extends('layouts.app')
+
+@section('content')
         <h1>レビュー作成</h1>
         <div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333;">
             <h3>{{ $comic->title }}</h3>
@@ -30,9 +24,9 @@
                     <textarea name="review[body]" placeholder="レビュー">{{ old('review.body') }}</textarea>
                     <p class="body__error" style="color:red">{{ $errors->first('review.body') }}</p>
                 </div>
-                <div class="user_id">
+                <div class="user_id" style="display:none">
                     <p>ユーザーid(仮)</p>
-                    <input type="number" name="review[user_id]" placeholder="ユーザーid" value="{{ old('review.user_id') }}"/>
+                    <input type="number" name="review[user_id]" placeholder="ユーザーid" value="{{ Auth::id() }}"/>
                     <p class="user_id__error" style="color:red">{{ $errors->first('review.user_id') }}</p>
                 </div>
                 <div class="comic_id" style="display:none">
@@ -47,5 +41,4 @@
             <div class="footer">
                 [<a href="/">back</a>]
             </div>
-    </body>
-</html>
+@endsection

@@ -18,6 +18,12 @@ class Picture extends Model
         return $this->hasOne('App\Genre');
     }
 
+    // usersとのリレーション
+    public function user()
+    {
+        return $this->hasOne('App\User');
+    }
+
     protected $fillable = [
         'image_path',
         'user_id',

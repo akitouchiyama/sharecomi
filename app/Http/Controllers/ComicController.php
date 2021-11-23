@@ -30,6 +30,7 @@ class ComicController extends Controller
     public function store(Comic $comic, ComicRequest $request)
     {
         $input_comic = $request['comic'];
+        $input += ['user_id' => $request->user()->id];
         $input_genres = $request->genres_array;// genres_arrayはcreate.blade.phpのnameで設定した配列名
         $input_tags = $request->tags_array;// tags_arrayはcreate.blade.phpのnameで設定した配列名
 
@@ -124,7 +125,7 @@ class ComicController extends Controller
         return redirect('/comics/' . $comic->id);
     }
 
-    public function destroy_picture(Picture $picture)
+    public function destroy_picture(Comic $comic, Picture $picture)
     {
         // 中間テーブルの紐付けを削除
         $picture->comics()->detach();
@@ -132,6 +133,7 @@ class ComicController extends Controller
         $image = $picture->image_path;
         $s3_delete = Storage::disk('s3')->delete($image);
         $db_delete = Picture::where('image_path',$image)->delete();
-        return redirect('/comics');
+        return redirect('/comics/' . $comic->id);
     }
+
 }

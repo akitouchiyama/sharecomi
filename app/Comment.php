@@ -13,6 +13,12 @@ class Comment extends Model
         return $this->belongsTo('App\Review');
     }
 
+    // usersに対するリレーション
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
+
     use SoftDeletes;
 
     protected $fillable = [

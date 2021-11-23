@@ -1,16 +1,10 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <title>Sarecomi</title>
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-    </head>
-    <body>
+@extends('layouts.app')
+
+@section('content')
         <h1>マンガ画像編集</h1>
             <p>※マンガ画像を削除したい場合は画像をクリック</p>
             @foreach($comic->pictures as $picture)
-                <form action="/comics/pictures/{{ $picture->id }}" id="form_delete_{{ $picture->id }}" method="post" style="display:inline">
+                <form action="/comics/{{ $comic->id }}/pictures/{{ $picture->id }}" id="form_delete_{{ $picture->id }}" method="post" style="display:inline">
                     {{ csrf_field() }}
                     {{ method_field('delete') }}
                     <input type="submit" style="display:none">
@@ -42,7 +36,7 @@
                 [<a href="/comics/">マンガ一覧に戻る</a>]
             </div>
 
-            @if($picture='')
+            @if($picture!='')
             <script>
             function deletePicture(e) {
                 'use strict';
@@ -52,6 +46,4 @@
             }
             </script>
             @endif
-
-    </body>
-</html>
+@endsection

@@ -42,9 +42,9 @@
                     <textarea name="comment[comment]" placeholder="コメント">{{ old('comment.comment') }}</textarea>
                     <p class="comment__error" style="color:red">{{ $errors->first('comment.comment') }}</p>
                 </div>
-                <div class="user_id">
+                <div class="user_id" style="display:none">
                     <p>ユーザーid(仮)</p>
-                    <input type="number" name="comment[user_id]" placeholder="ユーザーid" value="{{ old('comment.user_id') }}"/>
+                    <input type="number" name="comment[user_id]" placeholder="ユーザーid" value="{{ Auth::id() }}"/>
                     <p class="user_id__error" style="color:red">{{ $errors->first('comment.user_id') }}</p>
                 </div>
                 <div class="review_id" style="display:none">

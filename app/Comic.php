@@ -34,6 +34,12 @@ class Comic extends Model
         return $this->hasOne('App\Average');
     }
 
+    // usersとのリレーション
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
+
     use SoftDeletes;
 
     // 削除したら関連するreviewsも削除
@@ -56,9 +62,9 @@ class Comic extends Model
         'introduction',
         'comment',
         'user_id',
+        'comic_link',
         'total_review',
         'total_number',
-        'comic_link',
     ];
 
     public function getPaginateByLimit(int $limit_count = 5)

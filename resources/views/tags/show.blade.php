@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <title>Sarecomi</title>
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-    </head>
-    <body>
+@extends('layouts.app')
+
+@section('content')
         <h1>タグ詳細</h1>
+        @if( Auth::id() == $tag->user_id)
         <p class='edit'>[<a href="/tags/{{ $tag->id }}/edit">edit</a>]</p>
         <form action="/tags/{{ $tag->id }}" id="form_delete" method="post">
             {{ csrf_field() }}
@@ -15,9 +10,10 @@
             <input type="submit" style="display:none">
             <p class='delete'>[<span onclick="return deleteTag(this);">delete</span>]</p>
         </form>
+        @endif
         <div class="content">
             <h3>{{ $tag->tag_name }}</h3>
-            <p>user_id : {{ $tag->user_id }}</p>
+            <p>投稿者 : {{ $tag->user->name }}</p>
             <p>{{ $tag->updated_at }}</p>
         </div>
         <div class="footer">
@@ -31,5 +27,4 @@
             }
         }
         </script>
-    </body>
-</html>
+@endsection

@@ -12,6 +12,11 @@ class Tag extends Model
         return $this->belongsToMany('App\Comic');
     }
 
+    // usersに対するリレーション
+    public function user() {
+        return $this->belongsTo('App\User');
+    }
+
     use SoftDeletes;
 
     protected $fillable = [

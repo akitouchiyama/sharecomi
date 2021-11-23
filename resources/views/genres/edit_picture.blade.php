@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <title>Sarecomi</title>
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-    </head>
-    <body>
+@extends('layouts.app')
+
+@section('content')
         <h1>ジャンル画像編集</h1>
         @if($genre->picture)
             <h3>ジャンル画像削除</h3>
@@ -54,6 +48,4 @@
         }
         </script>
         @endif
-
-    </body>
-</html>
+@endsection

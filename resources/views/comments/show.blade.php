@@ -8,6 +8,7 @@
     </head>
     <body>
         <h1>コメント詳細</h1>
+        @if( Auth::id() == {{ $comment->user_id }})
         <p class='edit'>[<a href="/comments/{{ $comment->id }}/edit">edit</a>]</p>
         <form action="/comments/{{ $comment->id }}" id="form_delete" method="post">
             {{ csrf_field() }}
@@ -15,9 +16,10 @@
             <input type="submit" style="display:none">
             <p class='delete'>[<span onclick="return deleteComment(this);">delete</span>]</p>
         </form>
+        @endif
         <div class="content">
             <h3>{{ $comment->comment }}</h3>
-            <p>user_id : {{ $comment->user_id }}</p>
+            <p>投稿者 : {{ $comment->user->name }}</p>
             <p>{{ $comment->updated_at }}</p>
         </div>
         <div class="footer">

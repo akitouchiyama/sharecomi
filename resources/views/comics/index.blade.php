@@ -1,16 +1,7 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <title>Sarecomi</title>
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-    </head>
-    <body>
+@extends('layouts.app')
+
+@section('content')
         <h1>マンガ一覧</h1>
-        <span>[<a href="/">タイムラインへ</a>]</span>
-        <span>[<a href='/genres'>ジャンルから探す</a>]</span>
-        <span>[<a href='/tags'>タグから探す</a>]</span>
         <div class="button">
             <button onclick="location.href='/comics/create'">マンガ投稿</button>
         </div>
@@ -24,11 +15,8 @@
                         @endforeach
                     </p>
                     <p class='author'>{{ $comic->author }}</p>
-                    @if($comic->comic_link)
-                        <a href="{{ $comic->comic_link }}">商品リンク</a>
-                    @endif
                     <p class='average'>
-                            @if ($comic->total_number == 0 && $comic->total_review == 0)
+                            @if ($comic->total_number == 0 || $comic->total_review == 0)
                                 @php
                                     echo '平均評価: ' . 0;
                                 @endphp
@@ -38,6 +26,9 @@
                                 @endphp
                             @endif
                     </p>
+                    @if($comic->comic_link)
+                        <a href="{{ $comic->comic_link }}">商品リンク</a>
+                    @endif
                     <p class='genres'>
                         @foreach($comic->genres as $genre)
                             <div>
@@ -54,12 +45,11 @@
                     </p>
                     <p class='introduction'>{{ $comic->introduction }}</p>
                     <p class='comment'>{{ $comic->comment }}</p>
-                    <p class='comic_link'>{{ $comic->comic_link }}</p>
+                    <p class="user_name">投稿者 : {{ $comic->user->name }}</p>
                 </div>
             @endforeach
         </div>
         <div class='paginate'>
             {{ $comics->links() }}
         </div>
-    </body>
-</html>
+@endsection

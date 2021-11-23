@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <title>Sarecomi</title>
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-    </head>
-    <body>
+@extends('layouts.app')
+
+@section('content')
         <h1>レビュー詳細</h1>
+        @if( Auth::id() == $review->user_id)
         <p class='edit'>[<a href="/reviews/{{ $review->id }}/edit">edit</a>]</p>
         <form action="/reviews/{{ $review->id }}" id="form_delete" method="post">
             {{ csrf_field() }}
@@ -15,13 +10,16 @@
             <input type="submit" style="display:none">
             <p class='delete'>[<span onclick="return deleteReview(this);">delete</span>]</p>
         </form>
+        @endif
         <div class="content">
             <div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333;">
                 <h4>{{ $review->comic->title }}</h4>
                 <small>{{ $review->comic->author }}</small><br>
-                @if($review->comic->comic_link)
-                    <a href="{{ $review->comic->comic_link }}">商品リンク</a>
-                @endif
+                <p class='pictures'>
+                        @foreach($review->comic->pictures as $picture)
+                            <a href="/comics/pictures/{{ $review->comic->id }}/edit"><img src="https://sharecomi.s3-ap-northeast-1.amazonaws.com/{{ $picture->image_path }}" width="70" height="100"></a>
+                        @endforeach
+                </p>
                 <small>
                     @if ($review->comic->total_number == 0 && $review->comic->total_review == 0)
                         @php
@@ -33,6 +31,9 @@
                         @endphp
                     @endif
                 </small><br>
+                @if($review->comic->comic_link)
+                    <a href="{{ $review->comic->comic_link }}">商品リンク</a>
+                @endif
                 <small>
                     @foreach($review->comic->genres as $genre)
                         <div>
@@ -52,7 +53,7 @@
             <h4>{{ $review->title }}</h4>
             <p>5段階評価 : {{ $review->review }}</p>
             <p>{{ $review->body }}</p>
-            <p>user_id : {{ $review->user_id }}</p>
+            <p>投稿者 : {{ $review->user->name }}</p>
             <small>{{ $review->updated_at }}</small>
         </div>
         <br><hr>
@@ -61,7 +62,7 @@
         <div class="comments">
             @foreach($review->comments as $comment)
                 <div class="comment" style='border: 1px solid;border-radius: 5px;'>
-                    <span>{{ $comment->user_id }}</span><br>
+                    <span>{{ $comment->user->name }}</span><br>
                     <a href="/comments/{{ $comment->id }}"><span>{{ $comment->comment }}</span></a><br>
                     <small>{{ $comment->updated_at }}</small><br>
                 </div><br>
@@ -82,5 +83,4 @@
             }
         }
         </script>
-    </body>
-</html>
+@endsection

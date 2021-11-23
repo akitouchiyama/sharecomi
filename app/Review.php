@@ -19,6 +19,12 @@ class Review extends Model
         return $this->hasMany('App\Comment');
     }
 
+    // usersとのリレーション
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
+
     use SoftDeletes;
 
     // 削除したら関連するcommentsも削除

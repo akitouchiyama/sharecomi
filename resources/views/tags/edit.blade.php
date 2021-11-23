@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <title>Sarecomi</title>
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-    </head>
-    <body>
+@extends('layouts.app')
+
+@section('content')
         <h1>ジャンル編集</h1>
             <form action="/tags/{{ $tag->id }}" method="POST">
                 {{ csrf_field() }}
@@ -28,5 +22,4 @@
             <div class="footer">
                 [<a href="/tags/{{ $tag->id }}">back</a>]
             </div>
-    </body>
-</html>
+@endsection

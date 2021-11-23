@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <title>Sarecomi</title>
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-    </head>
-    <body>
+@extends('layouts.app')
+
+@section('content')
         <h1>レビュー編集</h1>
         <div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333;">
             <h3>{{ $review->comic->title }}</h3>
@@ -37,7 +31,7 @@
                     <p class="user_id__error" style="color:red">{{ $errors->first('review.user_id') }}</p>
                 </div>
                 <div class="comic_id" style="display:none">
-                    <p>マンガid(仮)</p>
+                    <p>マンガid</p>
                     <input type="number" name="review[comic_id]" placeholder="マンガid" value="{{ old('review.comic_id') ? : $review->comic_id  }}"/>
                     <p class="comic_id__error" style="color:red">{{ $errors->first('review.comic_id') }}</p>
                 </div>
@@ -45,12 +39,9 @@
                     <p>id</p>
                     <input type="number" name="review[id]" placeholder="id" value="{{ old('review.id') ? : $review->id  }}"/>
                 </div><br>
-                <div class="submit">
-                    <input type="submit" value="更新"/>
-                </div>
+                <input type="submit" value="更新"/>
             </form>
             <div class="footer">
                 [<a href="/reviews/{{ $review->id }}">back</a>]
             </div>
-    </body>
-</html>
+@endsection

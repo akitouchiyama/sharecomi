@@ -36,4 +36,40 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // comicsとのリレーション
+    public function comics()
+    {
+        return $this->hasMany('App\Comic');
+    }
+
+    // reviewsに対するリレーション
+    public function reviews()
+    {
+        return $this->hasMany('App\Review');
+    }
+
+    // commentsに対するリレーション
+    public function comments()
+    {
+        return $this->hasMany('App\Comment');
+    }
+
+    // genresに対するリレーション
+    public function genres()
+    {
+        return $this->hasMany('App\Genre');
+    }
+
+    // tagsに対するリレーション
+    public function tags()
+    {
+        return $this->hasMany('App\Tag');
+    }
+
+    // picturesとのリレーション
+    public function picture()
+    {
+        return $this->hasOne('App\Picture');
+    }
 }

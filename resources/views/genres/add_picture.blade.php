@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <title>Sarecomi</title>
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-    </head>
-    <body>
+@extends('layouts.app')
+
+@section('content')
         <h1>ジャンル画像アップロード</h1><br>
         @if (count($errors) > 0)
             <div class="alert alert-danger">
@@ -28,5 +22,4 @@
         <div class="footer">
             [<a href="/genres/{{ $genre->id }}">ジャンル画像を設定しない</a>]
         </div>
-    </body>
-</html>
+@endsection
