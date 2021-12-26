@@ -12,9 +12,30 @@ use Illuminate\Http\Request;
 
 class ComicController extends Controller
 {
-    public function index(Comic $comic)
+    public function index(Comic $comic, Request $request)
     {
-        return view('comics.index')->with(['comics' => $comic->getPaginateByLimit()]);
+        #キーワード受け取り
+        $keyword = $request->input('keyword');
+
+        #クエリ生成
+        $query = Comic::query();
+
+        #もしキーワードがあったら
+        if(!empty($keyword))
+        {
+            $query->where('title','like','%'.$keyword.'%');
+            $query->orWhere('author','like','%'.$keyword.'%');
+        }
+
+        #ページネーション
+        $data = $query->orderBy('updated_at','desc')->paginate(10);
+
+        // 全件取得 +ページネーション
+        $searchs = $query->orderBy('id','desc')->paginate(5);
+        return view('comics.index')
+        ->with('searchs',$searchs)
+        ->with('keyword',$keyword)
+        ->with(['comics' => $comic->getPaginateByLimit()]);
     }
 
     public function show(Comic $comic)

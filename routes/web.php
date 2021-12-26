@@ -59,6 +59,13 @@ Route::group(['middleware' => 'auth'], function(){
     Route::delete('/comments/{comment}', 'CommentController@destroy');
     Route::get('/comments/{comment}', 'CommentController@show');
     Route::post('/comments', 'CommentController@store');
+
+    Route::get('/users/{user}', 'UserController@index');
+    Route::get('/users/{user}/comics', 'UserController@index_comics');
+    Route::get('/users/{user}/reviews', 'UserController@index_reviews');
+    Route::get('/users/{user}/genres', 'UserController@index_genres');
+    Route::get('/users/{user}/tags', 'UserController@index_tags');
+
 });
 
 Auth::routes();

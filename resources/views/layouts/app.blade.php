@@ -38,9 +38,9 @@
 
                     </ul>
                     @section('sidebar')
-                        <a href="{{ url('/comics') }}">マンガ一覧&nbsp;&nbsp;</a>
-                        <a href="{{ url('/genres') }}">ジャンル一覧&nbsp;&nbsp;</a>
-                        <a href="{{ url('/tags') }}">タグ一覧&nbsp;&nbsp;</a>
+                        <a href="{{ url('/') }}">タイムライン&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                        <a href="{{ url('/comics') }}">マンガ一覧&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                        <a href="/users/{{ Auth::id() }}">マイページ&nbsp;&nbsp;&nbsp;&nbsp;</a>
                     @show
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">

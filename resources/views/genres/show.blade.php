@@ -2,7 +2,7 @@
 
 @section('content')
         <h1>ジャンル詳細</h1>
-        @if( Auth::id() == {{ $genre->user_id }})
+        @if( Auth::id() ==  $genre->user_id )
         <p class='edit'>[<a href="/genres/{{ $genre->id }}/edit">edit</a>]</p>
         <form action="/genres/{{ $genre->id }}/{{ $genre->picture->id }}" id="form_delete" method="post">
             {{ csrf_field() }}

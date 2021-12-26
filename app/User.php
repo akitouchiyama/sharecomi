@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Auth;  //Userクラス定義の前に追加
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -71,5 +72,29 @@ class User extends Authenticatable
     public function picture()
     {
         return $this->hasOne('App\Picture');
+    }
+
+    // マイページのcomics
+    public function getOwnComicsPaginateByLimit(int $limit_count = 5)
+    {
+        return $this::with('comics')->find(Auth::id())->comics()->orderBy('updated_at', 'DESC')->paginate($limit_count);
+    }
+
+    // マイページのreviews
+    public function getOwnReviewsPaginateByLimit(int  $limit_count = 5)
+    {
+        return $this::with('reviews')->find(Auth::id())->reviews()->orderBy('updated_at', 'DESC')->paginate($limit_count);
+    }
+
+    // マイページのgenres
+    public function getOwnGenresPaginateByLimit(int $limit_count = 5)
+    {
+        return $this::with('genres')->find(Auth::id())->genres()->orderBy('updated_at', 'DESC')->paginate($limit_count);
+    }
+
+    // マイページのtags
+    public function getOwnTagsPaginateByLimit(int $limit_count = 5)
+    {
+        return $this::with('tags')->find(Auth::id())->tags()->orderBy('updated_at', 'DESC')->paginate($limit_count);
     }
 }
